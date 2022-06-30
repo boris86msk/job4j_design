@@ -26,42 +26,34 @@ public class SimpleArrayList<T> implements SimpleList<T> {
 
     @Override
     public T set(int index, T newValue) {
-        T res = null;
-        if (Objects.checkIndex(index, container.length) == index) {
-            res = container[index];
-            modCount++;
-            container[index] = newValue;
-        }
+        Objects.checkIndex(index, size);
+        T res = container[index];
+        modCount++;
+        container[index] = newValue;
         return res;
     }
 
     @Override
     public T remove(int index) {
-        T res = null;
-        if (Objects.checkIndex(index, container.length) == index) {
-            res = container[index];
-            System.arraycopy(
-                    container,
-                    index + 1,
-                    container,
-                    index,
-                    container.length - index - 1
-            );
-            container[container.length - 1] = null;
-            modCount++;
-            size--;
-        }
-
+        Objects.checkIndex(index, size);
+        T res = container[index];
+        System.arraycopy(
+                container,
+                index + 1,
+                container,
+                index,
+                container.length - index - 1
+        );
+        container[container.length - 1] = null;
+        modCount++;
+        size--;
         return res;
     }
 
     @Override
     public T get(int index) {
-        T res = null;
-        if (Objects.checkIndex(index, container.length) == index) {
-            res = container[index];
-        }
-        return res;
+        Objects.checkIndex(index, size);
+        return container[index];
     }
 
     @Override
@@ -94,7 +86,11 @@ public class SimpleArrayList<T> implements SimpleList<T> {
         };
     }
 
-    public void arrayUpp() {
-        container = Arrays.copyOf(container, container.length * 2);
+    private void arrayUpp() {
+        if (container.length == 0) {
+            container = (T[]) new Object[10];
+        } else {
+            container = Arrays.copyOf(container, container.length * 2);
+        }
     }
 }
