@@ -26,31 +26,42 @@ public class SimpleArrayList<T> implements SimpleList<T> {
 
     @Override
     public T set(int index, T newValue) {
-        T res = container[index];
-        modCount++;
-        container[Objects.checkIndex(index, container.length)] = newValue;
+        T res = null;
+        if (Objects.checkIndex(index, container.length) == index) {
+            res = container[index];
+            modCount++;
+            container[index] = newValue;
+        }
         return res;
     }
 
     @Override
     public T remove(int index) {
-        T res = container[index];
-        System.arraycopy(
-                container,
-                index + 1,
-                container,
-                index,
-                container.length - index - 1
-        );
-        container[container.length - 1] = null;
-        modCount++;
-        size--;
+        T res = null;
+        if (Objects.checkIndex(index, container.length) == index) {
+            res = container[index];
+            System.arraycopy(
+                    container,
+                    index + 1,
+                    container,
+                    index,
+                    container.length - index - 1
+            );
+            container[container.length - 1] = null;
+            modCount++;
+            size--;
+        }
+
         return res;
     }
 
     @Override
     public T get(int index) {
-        return container[Objects.checkIndex(index, container.length)];
+        T res = null;
+        if (Objects.checkIndex(index, container.length) == index) {
+            res = container[index];
+        }
+        return res;
     }
 
     @Override
