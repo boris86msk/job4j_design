@@ -5,8 +5,8 @@ public class Predator extends Animal {
 
     @Override
     public String toString() {
-        return "Predator{" +
-                "nameClass='" + nameClass + '\'' +
-                '}';
+        return "Predator{"
+                + "nameClass='" + nameClass + '\''
+                + '}';
     }
 }

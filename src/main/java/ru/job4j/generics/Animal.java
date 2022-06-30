@@ -5,8 +5,8 @@ public class Animal {
 
     @Override
     public String toString() {
-        return "Animal{" +
-                "nameClass='" + nameClass + '\'' +
-                '}';
+        return "Animal{"
+                + "nameClass='" + nameClass + '\''
+                + '}';
     }
 }
