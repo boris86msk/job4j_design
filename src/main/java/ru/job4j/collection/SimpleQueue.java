@@ -11,7 +11,7 @@ public class SimpleQueue<T> {
      * @return
      */
     public T poll() {
-        if (in.isEmpty() && out.isEmpty()){
+        if (in.isEmpty() && out.isEmpty()) {
             throw new NoSuchElementException();
         }
         while (in.isEmpty()) {
