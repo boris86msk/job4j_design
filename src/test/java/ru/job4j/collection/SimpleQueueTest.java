@@ -47,8 +47,10 @@ public class SimpleQueueTest {
         SimpleQueue<Integer> queue = new SimpleQueue<>();
         queue.push(1);
         queue.push(2);
-        queue.poll();
         queue.push(3);
-        assertThat(queue.poll(), is(2));
+        assertThat(queue.poll(), is(1));
+        queue.push(4);
+        queue.poll();
+        assertThat(queue.poll(), is(3));
     }
 }
