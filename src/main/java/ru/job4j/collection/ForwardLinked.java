@@ -43,6 +43,32 @@ public class ForwardLinked<T> implements Iterable<T> {
         return rst;
     }
 
+    /**
+     * алгоритм: 1) запоминаем ссылку на head.next
+     * 2) переводим ее на null, т.к. это теперь хвост списка
+     * 3) далее while с условием временная ссылка на след.элемент не null
+     * 4) нужна еще одна временная переменная для следующ/следующ элемента
+     * 5) далее идет переустановка (сдвиг) Нодов и первод одной ссылки
+     * @return
+     */
+
+    public boolean revert() {
+        boolean rsl = true;
+        if (head != null && head.next != null) {
+            Node<T> element = head.next;
+            head.next = null;
+            while (element != null) {
+                Node<T> next = element.next;
+                element.next = head;
+                head = element;
+                element = next;
+            }
+        } else {
+            rsl = false;
+        }
+        return rsl;
+    }
+
     @Override
     public Iterator<T> iterator() {
         return new Iterator<>() {
