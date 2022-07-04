@@ -16,7 +16,6 @@ public class ListUtilsTest {
     public void whenAddBefore() {
         List<Integer> input = new ArrayList<>(Arrays.asList(1, 3));
         ListUtils.addBefore(input, 1, 2);
-
         assertThat(input, is(Arrays.asList(1, 2, 3)));
     }
 
