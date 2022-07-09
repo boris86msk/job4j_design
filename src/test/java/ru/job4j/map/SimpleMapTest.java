@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 public class SimpleMapTest {
 
     @Test
-    public void WhenPutOneElement() {
+    public void whenPutOneElement() {
         SimpleMap<User, String> map = new SimpleMap<>();
         Calendar calendar = new GregorianCalendar();
         calendar.set(1986, 2, 15);
@@ -22,7 +22,7 @@ public class SimpleMapTest {
     }
 
     @Test
-    public void WenPutTwoElements() {
+    public void wenPutTwoElements() {
         SimpleMap<User, String> map = new SimpleMap<>();
         Calendar calendar = new GregorianCalendar();
         calendar.set(1986, 2, 15);
@@ -34,7 +34,7 @@ public class SimpleMapTest {
     }
 
     @Test
-    public void Iterator() {
+    public void iterator() {
         SimpleMap<User, String> map = new SimpleMap<>();
         Calendar calendar = new GregorianCalendar();
         calendar.set(1986, 2, 15);
@@ -50,7 +50,7 @@ public class SimpleMapTest {
     }
 
     @Test
-    public void WenGetТotExistingKey() {
+    public void wenGetТotExistingKey() {
         SimpleMap<User, String> map = new SimpleMap<>();
         Calendar calendar = new GregorianCalendar();
         calendar.set(1986, 2, 15);
@@ -64,7 +64,7 @@ public class SimpleMapTest {
     }
 
     @Test
-    public void WhenRemoveOneElement() {
+    public void whenRemoveOneElement() {
         SimpleMap<User, String> map = new SimpleMap<>();
         Calendar calendar = new GregorianCalendar();
         calendar.set(1986, 2, 15);
