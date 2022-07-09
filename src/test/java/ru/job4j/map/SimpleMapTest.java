@@ -50,7 +50,7 @@ public class SimpleMapTest {
     }
 
     @Test
-    public void wenGetТotExistingKey() {
+    public void wenGetToExistingKey() {
         SimpleMap<User, String> map = new SimpleMap<>();
         Calendar calendar = new GregorianCalendar();
         calendar.set(1986, 2, 15);
