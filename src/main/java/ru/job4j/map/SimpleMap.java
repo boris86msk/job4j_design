@@ -59,14 +59,17 @@ public class SimpleMap<K, V> implements Map<K, V> {
     @Override
     public V get(K key) {
         int index = indexFor(hash(key));
-        return table[index] != null && table[index].key.equals(key) ? table[index].value : null;
+        return table[index] != null
+                && table[index].key.hashCode() == key.hashCode()
+                && table[index].key.equals(key) ? table[index].value : null;
     }
 
     @Override
     public boolean remove(K key) {
         boolean rst = false;
         int index = indexFor(hash(key));
-        if (table[index] != null && table[index].key.equals(key)) {
+        if (table[index] != null && table[index].key.hashCode() == key.hashCode()
+                && table[index].key.equals(key)) {
             table[index] = null;
             rst = true;
             modCount++;
@@ -97,7 +100,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                return (K) table[index++];
+                return table[index++].key;
             }
         };
     }
