@@ -14,6 +14,7 @@ public class ResultFile {
                     }
                 }
                 out.write(System.lineSeparator().getBytes());
+
             }
             out.write(System.lineSeparator().getBytes());
             for (int j = 2; j < 10; j++) {
