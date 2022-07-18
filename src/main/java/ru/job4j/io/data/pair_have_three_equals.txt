@@ -1,0 +1,6 @@
+address=nevsky prospect=44
+# PostgreSQL=6
+hibernate.connection.password=password
+https=alibaba//china/com
+addres=nevsky=
+=err
