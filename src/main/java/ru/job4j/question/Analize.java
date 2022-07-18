@@ -34,9 +34,7 @@ public class Analize {
         set.retainAll(set2);
         for (User us : set) {
             System.out.println(us.toString());
-        };
-
-
+        }
     }
 
 }
