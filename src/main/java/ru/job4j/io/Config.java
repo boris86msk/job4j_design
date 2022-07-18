@@ -22,9 +22,20 @@ public class Config {
         Map<String, String> val = null;
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             val = read.lines()
-                    .filter(s -> !s.startsWith("#") && s.contains("="))
+                    .filter(s -> !s.startsWith("#") || s.isEmpty())
+                    .filter(e -> {
+                        if (!e.contains("=")) {
+                            throw new IllegalArgumentException();
+                        }
+                        return true;
+                    })
                     .map(e -> e.split("=", 2))
-                    .filter(e -> !e[0].isEmpty() && !e[1].isEmpty())
+                    .filter(e -> {
+                        if (e[0].isEmpty() || e[1].isEmpty()) {
+                            throw new IllegalArgumentException();
+                        }
+                        return true;
+                    })
                     .collect(Collectors.toMap(e -> e[0], e -> e[1]));
         } catch (IOException e) {
             e.printStackTrace();
@@ -53,5 +64,4 @@ public class Config {
         }
         return out.toString();
     }
-
 }

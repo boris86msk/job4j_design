@@ -2,6 +2,8 @@ package ru.job4j.io;
 
 import org.junit.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
@@ -32,11 +34,17 @@ public class ConfigTest {
         assertThat(config.value("address"), is("nevsky prospekt=15"));
     }
 
-    @Test
+    @Test (expected = IllegalArgumentException.class)
     public void whenKeyPairIsNull() {
         String path = "data/key_pair_is_null.properties";
         Config config = new Config(path);
         config.load();
-        assertNull(config.value("hibernate.connection.driver_class"));
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void whenIsNotEquals() {
+        String path = "data/is_not_equals.properties";
+        Config config = new Config(path);
+        config.load();
     }
 }
