@@ -2,36 +2,41 @@ package ru.job4j.io;
 
 import org.junit.Test;
 
-import java.util.Map;
-import java.util.Set;
-
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
 public class ConfigTest {
 
     @Test
     public void whenPairWithoutComment() {
-        String path = "src/main/java/ru/job4j/io/data/pair_without_comment.properties";
+        String path = "data/pair_without_comment.properties";
         Config config = new Config(path);
         config.load();
-        assertThat(config.value("name"),is("boris pokidov"));
+        assertThat(config.value("name"), is("boris pokidov"));
+    }
+
+    @Test
+    public void whenPairHaveComment() {
+        String path = "data/pair_have_comment.properties";
+        Config config = new Config(path);
+        config.load();
+        assertNull(config.value("address"));
     }
 
     @Test
     public void whenPairHaveThreeEquals() {
-        String path = "app.properties";
+        String path = "data/pair_have_three_equals.properties";
         Config config = new Config(path);
         config.load();
-        assertThat(config.value("hibernate.connection.password"),is("password"));
+        assertThat(config.value("address"), is("nevsky prospekt=15"));
     }
 
     @Test
-    public void print() {
-        String path = "src/main/java/ru/job4j/io/data/pair_have_three_equals.txt";
+    public void whenKeyPairIsNull() {
+        String path = "data/key_pair_is_null.properties";
         Config config = new Config(path);
         config.load();
-        Set set = config.values.entrySet();
-        System.out.println(set);
+        assertNull(config.value("hibernate.connection.driver_class"));
     }
 }

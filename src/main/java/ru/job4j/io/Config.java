@@ -3,7 +3,6 @@ package ru.job4j.io;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringJoiner;
@@ -12,7 +11,7 @@ import java.util.stream.Collectors;
 public class Config {
 
     private final String path;
-    public Map<String, String> values = new HashMap<String, String>();
+    private Map<String, String> values = new HashMap<String, String>();
 
     public Config(final String path) {
         this.path = path;
@@ -41,6 +40,7 @@ public class Config {
      * переопределение toString нужно для считывания файла по path
      * именно в toString создаются объекты класса  BufferedReader и FileReader
      * и идет чтение файла по указанной ссылке.
+     *
      * @return
      */
     @Override
