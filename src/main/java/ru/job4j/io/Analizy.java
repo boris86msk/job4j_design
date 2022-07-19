@@ -1,8 +1,6 @@
 package ru.job4j.io;
 
 import java.io.*;
-import java.util.List;
-
 public class Analizy {
     public void unavailable(String source, String target) {
         try (BufferedReader in = new BufferedReader(new FileReader(source));
