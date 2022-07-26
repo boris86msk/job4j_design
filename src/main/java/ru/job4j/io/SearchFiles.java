@@ -41,7 +41,7 @@ public class SearchFiles implements FileVisitor<Path> {
      */
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
-        if(condition.test(file)) {
+        if (condition.test(file)) {
             paths.add(file);
         }
         return CONTINUE;
