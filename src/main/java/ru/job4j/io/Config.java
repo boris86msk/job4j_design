@@ -18,21 +18,22 @@ public class Config {
     }
 
     public void load() {
-        StringJoiner out = new StringJoiner(System.lineSeparator());
-        Map<String, String> val = null;
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
-            val = read.lines()
-                    .filter(s -> !s.startsWith("#") || s.isEmpty())
+            values = read.lines()
+                    .filter(s -> !s.isEmpty() && !s.startsWith("#"))
                     .filter(e -> {
                         if (!e.contains("=")) {
-                            throw new IllegalArgumentException();
+                            throw new IllegalArgumentException(
+                                    "the string does not contain the equal sign");
                         }
                         return true;
                     })
                     .map(e -> e.split("=", 2))
                     .filter(e -> {
                         if (e[0].isEmpty() || e[1].isEmpty()) {
-                            throw new IllegalArgumentException();
+                            throw new IllegalArgumentException(
+                                    "there is no value before or after the equal sign"
+                            );
                         }
                         return true;
                     })
@@ -40,7 +41,6 @@ public class Config {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        values = val;
     }
 
     public String value(String key) {
