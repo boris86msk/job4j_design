@@ -10,8 +10,9 @@ import java.util.function.Predicate;
 public class Search {
 
     public static void main(String[] args) throws IOException {
-        Path start = Paths.get("C:\\projects\\job4j_design\\src");
-        Predicate<Path> pred = p -> p.toFile().getName().endsWith(".java");
+        paramValidate(args);
+        Path start = Paths.get(args[0]);
+        Predicate<Path> pred = p -> p.toFile().getName().endsWith(args[1]);
         List<Path> list = search(start, pred);
         list.forEach(System.out::println);
     }
@@ -21,4 +22,15 @@ public class Search {
         Files.walkFileTree(root, searcher);
         return searcher.getPaths();
     }
+
+    static void paramValidate(String[] args) {
+        if (args.length == 0) {
+            throw new IllegalArgumentException("Root folder is null. Usage java " +
+                    "-jar dir.jar ROOT_FOLDER.");
+        }
+        if (!args[1].startsWith(".") && ) {
+
+        }
+    }
+
 }
