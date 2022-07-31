@@ -26,8 +26,8 @@ public class Search {
 
     static void paramValidate(String[] args) {
         if (args.length < 2) {
-            throw new IllegalArgumentException("Root folder is null. Usage java " +
-                    "-jar dir.jar ROOT_FOLDER.");
+            throw new IllegalArgumentException("Root folder is null. Usage java "
+                    + "-jar dir.jar ROOT_FOLDER.");
         }
         File file = new File(args[0]);
         if (!file.exists()) {
