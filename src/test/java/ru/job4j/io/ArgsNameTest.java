@@ -33,4 +33,22 @@ class ArgsNameTest {
         assertThatThrownBy(() -> ArgsName.of(new String[]{}))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void whenNotKey() {
+        assertThatThrownBy(() -> ArgsName.of(new String[]{"-=512byte"}))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void whenNotEqualsSymbol() {
+        assertThatThrownBy(() -> ArgsName.of(new String[]{"-encoding:UTF-8"}))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void whenNotStartWithDash() {
+        assertThatThrownBy(() -> ArgsName.of(new String[]{"encoding=UTF-8"}))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
