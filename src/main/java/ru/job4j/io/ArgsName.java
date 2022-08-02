@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class ArgsName {
 
-    private Map<String, String> values = new HashMap<>();
+    private final Map<String, String> values = new HashMap<>();
 
     public String get(String key) {
         if (!values.containsKey(key)) {
@@ -22,7 +22,7 @@ public class ArgsName {
             throw new IllegalArgumentException(
                     "no data available");
         }
-        values = Arrays.stream(args)
+        values.putAll(Arrays.stream(args)
                 .filter(e -> {
                     if (!e.startsWith("-")) {
                         throw new IllegalArgumentException(
@@ -46,7 +46,7 @@ public class ArgsName {
                     }
                     return true;
                 })
-                .collect(Collectors.toMap(e -> e[0], e -> e[1]));
+                .collect(Collectors.toMap(e -> e[0], e -> e[1])));
     }
 
 
