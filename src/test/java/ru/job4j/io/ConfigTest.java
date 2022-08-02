@@ -2,8 +2,6 @@ package ru.job4j.io;
 
 import org.junit.Test;
 
-import java.util.NoSuchElementException;
-
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
