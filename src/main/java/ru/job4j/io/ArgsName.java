@@ -18,8 +18,11 @@ public class ArgsName {
     }
 
     private void parse(String[] args) {
-        argsValid(args);
         values.putAll(Arrays.stream(args)
+                .filter(e -> {
+                    argsValid(e);
+                    return true;
+                })
                 .map(e -> e.substring(1))
                 .map(e -> e.split("=", 2))
                 .collect(Collectors.toMap(e -> e[0], e -> e[1])));
@@ -27,17 +30,16 @@ public class ArgsName {
 
 
     public static ArgsName of(String[] args) {
+        if (args.length == 0) {
+            throw new IllegalArgumentException(
+                    "no data available");
+        }
         ArgsName names = new ArgsName();
         names.parse(args);
         return names;
     }
 
-    private void argsValid(String[] args) {
-        if (args.length == 0) {
-            throw new IllegalArgumentException(
-                    "no data available");
-        }
-        for (String arg : args) {
+    private void argsValid(String arg) {
             if (!arg.startsWith("-")) {
                 throw new IllegalArgumentException(
                         "the string does not start with the character \"-\"");
@@ -46,13 +48,13 @@ public class ArgsName {
                 throw new IllegalArgumentException(
                         "the equal sign is missing");
             }
+
             arg = arg.substring(1);
             String[] a = arg.split("=", 2);
             if (a[0].isEmpty() || a[1].isEmpty()) {
                 throw new IllegalArgumentException(
                         "there is no key or value in the parameter");
             }
-        }
 
     }
 
