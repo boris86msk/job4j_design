@@ -40,22 +40,18 @@ public class ArgsName {
     }
 
     private void argsValid(String arg) {
-            if (!arg.startsWith("-")) {
-                throw new IllegalArgumentException(
-                        "the string does not start with the character \"-\"");
-            }
-            if (!arg.contains("=")) {
-                throw new IllegalArgumentException(
-                        "the equal sign is missing");
-            }
-
-            arg = arg.substring(1);
-            String[] a = arg.split("=", 2);
-            if (a[0].isEmpty() || a[1].isEmpty()) {
-                throw new IllegalArgumentException(
-                        "there is no key or value in the parameter");
-            }
-
+        if (!arg.startsWith("-")) {
+            throw new IllegalArgumentException(
+                    "the string does not start with the character \"-\"");
+        }
+        if (!arg.contains("=")) {
+            throw new IllegalArgumentException(
+                    "the equal sign is missing");
+        }
+        if (arg.startsWith("-=") || arg.indexOf("=") == arg.length() - 1) {
+            throw new IllegalArgumentException(
+                    "there is no key or value in the parameter");
+        }
     }
 
     public static void main(String[] args) {
