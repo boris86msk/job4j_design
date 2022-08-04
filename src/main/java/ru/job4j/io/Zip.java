@@ -31,33 +31,14 @@ public class Zip {
             e.printStackTrace();
         }
     }
-
-    public void packSingleFile(File source, File target) {
-        try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(target)))) {
-            zip.putNextEntry(new ZipEntry(source.getPath()));
-            try (BufferedInputStream out = new BufferedInputStream(new FileInputStream(source))) {
-                zip.write(out.readAllBytes());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     /**
      * параметры:
      * -d - directory - которую мы хотим архивировать.
      * -e - exclude - расширение исключаемых файлов.
      * -o - output - путь zip-папки.
-     *
-     * @param args
-     * @throws IOException
      */
     public static void main(String[] args) throws IOException {
         Zip zip = new Zip();
-        zip.packSingleFile(
-                new File("./pom.xml"),
-                new File("./pom.zip")
-        );
         ArgsName argsName = ArgsName.of(args);
         String[] argsArr = {
                 argsName.get("d"),
