@@ -6,8 +6,7 @@ import java.nio.charset.Charset;
 public class UsageEncoding {
     public String readFile(String path) {
         StringBuilder builder = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(
-                new FileReader(path, Charset.forName("WINDOWS-1251")))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             br.lines().map(s -> s + System.lineSeparator()).forEach(builder::append);
         } catch (IOException e) {
             e.printStackTrace();

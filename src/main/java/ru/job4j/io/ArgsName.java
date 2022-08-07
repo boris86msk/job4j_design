@@ -5,6 +5,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * класс принимает массив параметров, производит валидацию
+ * и разбивает их на пары: ключ, значение.
+ * объект класса ArgsName имеет единственное поле Map, в котором хранятся пары
+ * и метод get() для получения параметра по ключу.
+ * стартует с метода ArgsName.of()
+ */
 public class ArgsName {
 
     private final Map<String, String> values = new HashMap<>();
