@@ -63,8 +63,8 @@ public class ArgsName {
 
     @Override
     public String toString() {
-        return "ArgsName{" +
-                "values=" + values +
-                '}';
+        return "ArgsName{"
+                + "values=" + values
+                + '}';
     }
 }
