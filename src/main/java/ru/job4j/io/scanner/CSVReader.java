@@ -45,8 +45,8 @@ public class CSVReader {
             }
 
             try (PrintWriter out2 = new PrintWriter(
-                    new BufferedOutputStream(out.contains("stdout")?
-                            new PrintStream(System.out) : new FileOutputStream(out)
+                    new BufferedOutputStream(out.contains("stdout")
+                            ? new PrintStream(System.out) : new FileOutputStream(out)
                     ))) {
 
                 for (int i = 0; i < columnSize; i++) {
@@ -69,7 +69,7 @@ public class CSVReader {
         }
     }
 
-    public static void validateArgs (String path, String out, String delimiter, String filter) {
+    public static void validateArgs(String path, String out, String delimiter, String filter) {
         if (path == null || out == null || delimiter == null || filter == null
                 || path.isEmpty() || out.isEmpty() || delimiter.isEmpty() || filter.isEmpty()) {
             throw new IllegalArgumentException("incorrect number of arguments");
