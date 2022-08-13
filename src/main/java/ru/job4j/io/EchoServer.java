@@ -18,6 +18,8 @@ public class EchoServer {
                         out.write("Hello friend".getBytes());
                     } else if (request.contains("msg=Exit")) {
                         server.close();
+                    } else if (request.contains("msg=")) {
+                        out.write("What?".getBytes());
                     }
                     for (String str = in.readLine(); str != null && !str.isEmpty(); str = in.readLine()) {
                         System.out.println();
