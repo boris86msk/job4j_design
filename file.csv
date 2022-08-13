@@ -1,4 +1,6 @@
-name;age;last_name;education
-Tom;20;Smith;Bachelor
-Jack;25;Johnson;Undergraduate
-William;30;Brown;Secondary special
+identifier;access_code;recovery_code;first_name;last_name;department;location
+9012;12se74;rb9012;Rachel;Booker;Sales;Manchester
+2070;04ap67;lg2070;Laura;Grey;Depot;London
+4081;30no86;cj4081;Craig;Johnson;Depot;London
+9346;14ju73;mj9346;Mary;Jenkins;Engineering;Manchester
+5079;09ja61;js5079;Jamie;Smith;Engineering;Manchester

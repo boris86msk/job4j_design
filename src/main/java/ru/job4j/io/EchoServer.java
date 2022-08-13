@@ -20,6 +20,7 @@ public class EchoServer {
                         server.close();
                     }
                     for (String str = in.readLine(); str != null && !str.isEmpty(); str = in.readLine()) {
+                        System.out.println();
                     }
                     out.flush();
                 }
