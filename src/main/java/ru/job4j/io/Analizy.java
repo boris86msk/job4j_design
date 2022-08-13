@@ -19,8 +19,8 @@ public class Analizy {
                     server = true;
                 }
             }
-        } catch (Exception IOException) {
-            IOException.printStackTrace();
+        } catch (Exception ioexception) {
+            ioexception.printStackTrace();
         }
     }
 

@@ -11,8 +11,8 @@ public class LogFilter {
             rst = in.lines()
                     .filter(line -> line.contains(" 404 "))
                     .collect(Collectors.toList());
-        } catch (Exception IOException) {
-            IOException.printStackTrace();
+        } catch (Exception ioexception) {
+            ioexception.printStackTrace();
         }
         return rst;
     }
@@ -25,8 +25,8 @@ public class LogFilter {
             for (String line : log) {
                 out.printf("%s%n", line);
             }
-        } catch (Exception IOException) {
-            IOException.printStackTrace();
+        } catch (Exception ioexception) {
+            ioexception.printStackTrace();
         }
     }
 
