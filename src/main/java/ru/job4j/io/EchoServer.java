@@ -14,6 +14,7 @@ public class EchoServer {
                              new InputStreamReader(socket.getInputStream()))) {
                     out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
                     String request = in.readLine();
+                    System.out.println(request + "*************************");
                     if (request.contains("msg=Hello")) {
                         out.write("Hello friend".getBytes());
                     } else if (request.contains("msg=Exit")) {
@@ -22,7 +23,7 @@ public class EchoServer {
                         out.write("What?".getBytes());
                     }
                     for (String str = in.readLine(); str != null && !str.isEmpty(); str = in.readLine()) {
-                        System.out.println();
+                        System.out.println(str);
                     }
                     out.flush();
                 }
