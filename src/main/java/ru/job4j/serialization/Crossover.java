@@ -6,14 +6,14 @@ import com.google.gson.GsonBuilder;
 import java.util.Arrays;
 
 public class Crossover {
-    private final boolean AWD;
+    private final boolean awd;
     private int cost;
     private final String model;
     private Passport passport;
     private String[] options;
 
-    public Crossover (boolean awd, int cost, String model, Passport pass, String[] opt) {
-        this.AWD = awd;
+    public Crossover(boolean awd, int cost, String model, Passport pass, String[] opt) {
+        this.awd = awd;
         this.cost = cost;
         this.model = model;
         this.passport = pass;
@@ -21,7 +21,7 @@ public class Crossover {
     }
     public static void main(String[] args) {
         Crossover crossover = new Crossover(true, 900000, "Kia_Sportage",
-                new Passport("W B A G B 3 3 0 4 0 2 1 8 2 6 1 6","H099KK","Boris_Pokidov"),
+                new Passport("W B A G B 3 3 0 4 0 2 1 8 2 6 1 6", "H099KK", "Boris_Pokidov"),
                 new String[]{"conditioner", "ABS", "ESP"});
 
         final Gson gson = new GsonBuilder().create();
@@ -29,7 +29,7 @@ public class Crossover {
 
         final String crossoverJson =
                 "{"
-                        + "\"AWD\":true,"
+                        + "\"awd\":true,"
                         + "\"cost\":900000,"
                         + "\"model\":Kia_Sportage, "
                         + "\"passport\":"
@@ -49,7 +49,7 @@ public class Crossover {
     @Override
     public String toString() {
         return "Crossover{"
-                + "AWD=" + AWD
+                + "AWD=" + awd
                 + ", cost=" + cost
                 + ", model='" + model + '\''
                 + ", passport=" + passport

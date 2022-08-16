@@ -1,13 +1,13 @@
 package ru.job4j.serialization;
 
 public class Passport {
-    private final String VIN;
+    private final String vin;
     private String num;
     private String owner;
 
 
-    public Passport(String VIN, String num, String owner) {
-        this.VIN = VIN;
+    public Passport(String vin, String num, String owner) {
+        this.vin = vin;
         this.num = num;
         this.owner = owner;
     }
@@ -15,7 +15,7 @@ public class Passport {
     @Override
     public String toString() {
         return "Passport{"
-                + "VIN='" + VIN + '\''
+                + "VIN='" + vin + '\''
                 + ", num='" + num + '\''
                 + ", owner='" + owner + '\''
                 + '}';
