@@ -18,7 +18,7 @@ public class Marshall {
         Marshaller marshaller = context.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         String xml = "";
-        try(StringWriter writer = new StringWriter()) {
+        try (StringWriter writer = new StringWriter()) {
             marshaller.marshal(crossover, writer);
             xml = writer.getBuffer().toString();
             System.out.println(xml);
