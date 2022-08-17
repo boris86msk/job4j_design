@@ -12,7 +12,7 @@ import com.google.gson.GsonBuilder;
 public class Main {
     public static void main(String[] args) {
         final Person person = new Person(false, 30, new Contact(123456,"+7(924)111-111-11-11"),
-                new String[] {"Worker", "Married"});
+                 new String[] {"Worker", "Married"});
 
         final Gson gson = new GsonBuilder().create();
         System.out.println(gson.toJson(person));
