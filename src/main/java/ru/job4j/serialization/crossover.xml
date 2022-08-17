@@ -1,0 +1,13 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<crossover awd="true" cost="900000" model="Kia_Sportage">
+    <passport>
+        <vin>W B A G B 3 3 0 4 0 2 1 8 2 6 1 6</vin>
+        <num>H099KK</num>
+        <pwner>Boris_Pokidov</pwner>
+    </passport>
+    <options>
+        <option>conditioner</option>
+        <option>ESP</option>
+        <option>ABS</option>
+    </options>
+</crossover>
