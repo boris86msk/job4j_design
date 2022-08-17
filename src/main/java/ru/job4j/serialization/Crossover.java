@@ -2,16 +2,29 @@ package ru.job4j.serialization;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Arrays;
 
+@XmlRootElement(name = "crossover")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Crossover {
-    private final boolean awd;
+    @XmlAttribute
+    private boolean awd;
+    @XmlAttribute
     private int cost;
-    private final String model;
+    @XmlAttribute
+    private String model;
+
     private Passport passport;
+
     private String[] options;
 
+    public Crossover() {
+
+    }
     public Crossover(boolean awd, int cost, String model, Passport pass, String[] opt) {
         this.awd = awd;
         this.cost = cost;
@@ -56,4 +69,5 @@ public class Crossover {
                 + ", options=" + Arrays.toString(options)
                 + '}';
     }
+
 }
