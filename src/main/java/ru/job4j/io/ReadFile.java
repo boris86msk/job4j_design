@@ -1,6 +1,7 @@
 package ru.job4j.io;
 
 import java.io.FileInputStream;
+import java.io.FileReader;
 
 public class ReadFile {
     /**
@@ -15,16 +16,28 @@ public class ReadFile {
             int read;
             while ((read = in.read()) != -1) {
                 text.append((char) read);
+                System.out.println(text);
             }
-            System.out.println(text);
-            System.out.println();
 
-            String[] lines = text.toString().split(System.lineSeparator());
-            for (String line : lines) {
-                System.out.println(line);
-            }
+
+
+//            String[] lines = text.toString().split(System.lineSeparator());
+//            for (String line : lines) {
+//                System.out.println(line);
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+//        try (FileReader rid = new FileReader("input.txt")) {
+//            StringBuilder text = new StringBuilder();
+//            int rd;
+//            while ((rd = rid.read()) != -1) {
+//                text.append((char) rd);
+//                System.out.println(text);
+//            }
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 }
