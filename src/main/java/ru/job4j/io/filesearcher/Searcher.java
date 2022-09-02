@@ -53,17 +53,8 @@ public class Searcher {
     }
 
     private static void scanByMask() throws IOException {
-        StringBuilder regex = new StringBuilder();
-        for (int i = 0; i < searchObject.length(); i++) {
-            if (searchObject.charAt(i) == '*') {
-                regex.append("^.+");
-            } else if (searchObject.charAt(i) == '?') {
-                regex.append("^.");
-            } else {
-                regex.append(searchObject.charAt(i));
-            }
-        }
-        searchObject = regex.toString();
+        searchObject = searchObject.replace("?", "\\w");
+        searchObject = searchObject.replace("*", "\\w+");
         searchByRegex();
     }
 
