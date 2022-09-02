@@ -1,7 +1,5 @@
 package ru.job4j.io.filesearcher;
 
-import ru.job4j.io.SearchFiles;
-
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
