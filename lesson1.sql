@@ -1,4 +1,4 @@
-create table birthday(
+create table birthday (
 	id serial primary key,
 	name varchar(255),
 	age smallint,
