@@ -26,8 +26,16 @@ create table car(
  insert into car(name, engine) VALUES ('WV Tiguan', 7);
  insert into car(name, engine) VALUES ('Kia Rio', 3);
 
- select * from car join engine on car.engine = engine.id AND engine.volume < 1.8;
- select name as "Марка", volume as "объем мотора" from car join engine on car.engine = engine.id;
- select c.name, ee.volume, ee.turbo from car as c join engine as ee on c.engine = ee.id;
- select c.name, ee.volume, ee.turbo as "Турбо-мотор" from
-     car as c join engine as ee on c.engine = ee.id AND ee.turbo = true;
+ select * from car join engine
+ on car.engine = engine.id
+ where engine.volume < 1.8;
+
+ select name as "Марка", volume as "объем мотора"
+ from car join engine on car.engine = engine.id;
+
+ select c.name, ee.volume, ee.turbo from car
+ as c join engine as ee on c.engine = ee.id;
+
+ select c.name, ee.volume, ee.turbo as "Турбо-мотор"
+ from car as c join engine as ee on c.engine = ee.id
+ where ee.turbo = true;
