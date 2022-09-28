@@ -1,6 +1,7 @@
-SELECT *
+SELECT product.name, type.name AS type_name
 FROM product
-WHERE type_id = 1;
+INNER JOIN type ON type.id = product.type_id
+WHERE type.name LIKE '%Сыр%';
 
 SELECT *
 FROM product
@@ -10,11 +11,9 @@ SELECT *
 FROM product
 WHERE expired_data < current_date;
 
-SELECT name, MAX(price)
+SELECT name, price
 FROM product
-GROUP BY name
-ORDER BY MAX(price) DESC
-LIMIT 1;
+WHERE price = (SELECT MAX(price) FROM product);
 
 SELECT type.name, COUNT(*)
 FROM product
@@ -31,7 +30,8 @@ FROM product
 INNER JOIN type ON type.id = product.type_id
 GROUP BY type.name;
 
-SELECT product.name, type.name
+SELECT product.name, type.name AS type_name
 FROM product
 INNER JOIN type ON type.id = product.type_id
+WHERE type.name LIKE '%Сыр%' OR type.name LIKE '%Молоко%';
 

@@ -18,6 +18,7 @@ insert into product(name, type_id, expired_data, price) values('Дружба', 1
 insert into product(name, type_id, expired_data, price) values('Орбита', 1, '14-10-2022', 16);
 insert into product(name, type_id, expired_data, price) values('Омичка', 1, '15-11-2022', 25);
 insert into product(name, type_id, expired_data, price) values('Сыр творожный Valio', 1, '28-11-2022', 115);
+insert into product(name, type_id, expired_data, price) values('Сыр творожный Valio', 1, '28-11-2022', 115);
 insert into product(name, type_id, expired_data, price) values('President Сыр Сливочный', 1, '20-11-2022', 215);
 insert into product(name, type_id, expired_data, price) values('Сыр Брест-Литовск', 1, '28-10-2022', 155);
 insert into product(name, type_id, expired_data, price) values('Valio Viola', 1, '15-10-2022', 76);
