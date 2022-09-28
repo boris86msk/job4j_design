@@ -34,4 +34,3 @@ SELECT product.name, type.name AS type_name
 FROM product
 INNER JOIN type ON type.id = product.type_id
 WHERE type.name LIKE '%Сыр%' OR type.name LIKE '%Молоко%';
-
