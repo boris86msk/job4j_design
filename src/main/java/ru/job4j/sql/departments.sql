@@ -47,12 +47,12 @@ CROSS JOIN employees e;
 SELECT d.id, d.name
 from departments d
 LEFT JOIN employees e ON e.dep_id = d.id
-WHERE e.dep_id IS NULL
+WHERE e.dep_id IS NULL;
 
 SELECT d.id, d.name, e.name
 from departments d
-LEFT JOIN employees e ON e.dep_id = d.id
+LEFT JOIN employees e ON e.dep_id = d.id;
 
 SELECT d.id, d.name, e.name
 from employees e
-RIGHT JOIN departments d ON e.dep_id = d.id
+RIGHT JOIN departments d ON e.dep_id = d.id;

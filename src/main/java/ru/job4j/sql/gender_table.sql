@@ -1,7 +1,7 @@
 CREATE TABLE teens (
 	id serial primary key,
 	name varchar,
-	gender varchar(4)
+	gender varchar(5)
 );
 
 insert into teens(name, gender) values('Анна', 'woman');
@@ -16,9 +16,4 @@ insert into teens(name, gender) values('Виталий', 'man');
 SELECT CONCAT(t1.name, ' + ', t2.name)
 FROM teens t1
 CROSS JOIN teens t2
-WHERE t1.gender != t2.gender
-LIMIT ((SELECT COUNT(*)
-FROM teens
-WHERE gender LIKE 'man') * (SELECT COUNT(*)
-FROM teens
-WHERE gender LIKE 'woman'))
+WHERE t1.gender != t2.gender AND t1.gender = 'man';
