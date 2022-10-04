@@ -21,9 +21,12 @@ CREATE TABLE cars (
 	transmissions_id int references car_transmissions(id)
 );
 
-insert into car_bodies(name) values('sedan'), ('hatchback'), ('liftback'), ('pickup'), ('station_wagon'), ('convertible');
-insert into car_engines(name) values('1.4 16v'), ('1.6 8v'), ('1.6 16v'), ('1.8 16v'), ('2.0 16v'), ('1.4 16v turbo'), ('2.0 16v turbo'), ('2.4 16v'), ('V6 3.2 24v');
-insert into car_transmissions(name) values('MT-5 120'), ('MT-6 127'), ('AT-4 110'), ('AT-5 119'), ('ATR-4 135'), ('ATV 130'), ('MT-5 200');
+insert into car_bodies(name) values('sedan'), ('hatchback'), ('liftback'), ('pickup'),
+    ('station_wagon'), ('convertible');
+insert into car_engines(name) values('1.4 16v'), ('1.6 8v'), ('1.6 16v'), ('1.8 16v'),
+    ('2.0 16v'), ('1.4 16v turbo'), ('2.0 16v turbo'), ('2.4 16v'), ('V6 3.2 24v');
+insert into car_transmissions(name) values('MT-5 120'), ('MT-6 127'), ('AT-4 110'),
+    ('AT-5 119'), ('ATR-4 135'), ('ATV 130'), ('MT-5 200');
 insert into cars(name, body_id, engine_id, transmissions_id) values('VAZ 1119', 2, 2, 1);
 insert into cars(name, body_id, engine_id, transmissions_id) values('Mazda 3', 5, 3, 3);
 insert into cars(name, body_id, engine_id, transmissions_id) values('Toeta Camry', 1, 5, 4);
@@ -37,7 +40,7 @@ insert into cars(name, body_id, engine_id, transmissions_id) values('Tesla', 1, 
 
 SELECT c.id, c.name, cb.name AS bodies, ce.name AS engines, ct.name AS transmissions
 FROM cars c
-JOIN car_bodies cb ON cb.id = c.body_id
+LEFT JOIN car_bodies cb ON cb.id = c.body_id
 LEFT JOIN car_engines ce ON ce.id = c.engine_id
 LEFT JOIN car_transmissions ct ON ct.id = c.transmissions_id;
 
