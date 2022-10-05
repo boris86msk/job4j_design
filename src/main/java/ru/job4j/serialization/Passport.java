@@ -19,6 +19,16 @@ public class Passport {
 
     }
 
+    public String getVin() {
+        return vin;
+    }
+    public String getNum() {
+        return num;
+    }
+    public String getOwner() {
+        return owner;
+    }
+
     public Passport(String vin, String num, String owner) {
         this.vin = vin;
         this.num = num;
