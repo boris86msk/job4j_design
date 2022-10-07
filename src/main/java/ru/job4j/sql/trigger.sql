@@ -13,6 +13,18 @@ create table history_of_price (
     date timestamp
 );
 
+create or replace function tax_10()
+    returns trigger as
+$$
+    BEGIN
+        update products
+        set price = price + (price * 0.10)
+        where id = (select id from inserted);
+        return NEW;
+    END;
+$$
+LANGUAGE 'plpgsql';
+
 create trigger tax_trigger_10
     after insert
     on products
@@ -20,41 +32,21 @@ create trigger tax_trigger_10
     for each statement
     execute procedure tax_10();
 
+reate or replace function tax_15()
+    returns trigger as
+$$
+    BEGIN
+        new.price = new.price + (new.price * 0.15)
+        return NEW;
+    END;
+$$
+LANGUAGE 'plpgsql';
+
 create trigger tax_trigger_15
     before insert
     on products
     for each row
     execute procedure tax_15();
-
-create trigger update_histori
-    after insert
-    on products
-    for each row
-    execute procedure update_history_of_price();
-
-create or replace function tax_10()
-    returns trigger as
-$$
-    BEGIN
-        update products
-        set price = price + price * 0.10
-        where id = (select id from inserted);
-        return NEW;
-    END;
-$$
-LANGUAGE 'plpgsql';
-
-create or replace function tax_15()
-    returns trigger as
-$$
-    BEGIN
-        update products
-        set price = price + price * 0.15
-        where id = (select id from inserted);
-        return NEW;
-    END;
-$$
-LANGUAGE 'plpgsql';
 
 create or replace function update_history_of_price()
     returns trigger as
@@ -66,6 +58,12 @@ $$
     END;
 $$
 LANGUAGE 'plpgsql';
+
+create trigger update_histori
+    after insert
+    on products
+    for each row
+    execute procedure update_history_of_price();
 
 insert into products(name, producer, count, price) values('Фасоль', 'ECO', 5, 200);
 insert into products(name, count, price) values('Огурцы', 'ECO', 5, 50);
