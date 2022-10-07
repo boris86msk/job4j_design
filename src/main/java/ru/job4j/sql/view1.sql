@@ -55,7 +55,8 @@ insert into orders (book_id, student_id, start_date, end_date) values (7, 3,
     '2021-11-14', '2022-01-01');
 
 create view show_students_who_have_any_book_40_days_more
-    as SELECT s.name as student_name, a.name, b.name, o.end_date - o.start_date as total_days
+    as SELECT s.name as student_name, a.name as autoros_name, b.name as books_name,
+       o.end_date - o.start_date as total_days
        FROM students s
        JOIN orders o on s.id = o.student_id
        JOIN books b on o.book_id = b.id
