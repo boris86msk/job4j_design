@@ -31,11 +31,11 @@ public class TableEditor implements AutoCloseable {
                 tableName,
                 "id serial primary key"
         );
-        ConnectToDB(tableName, sql);
+        ConnectToDb(tableName, sql);
     }
 
     public static void dropTable(String tableName) throws Exception {
-        String sql = String.format("drop table %s;", tableName) ;
+        String sql = String.format("drop table %s;", tableName);
         try (Connection connection = getCon()) {
             try (Statement statement = connection.createStatement()) {
                 statement.execute(sql);
@@ -47,22 +47,22 @@ public class TableEditor implements AutoCloseable {
     public static void addColumn(String tableName, String columnName, String type) throws Exception {
         String sql = String.format(
                 "ALTER table %s ADD %s %s NULL;", tableName, columnName, type);
-        ConnectToDB(tableName, sql);
+        ConnectToDb(tableName, sql);
     }
 
     public static void dropColumn(String tableName, String columnName) throws Exception {
         String sql = String.format(
                 "ALTER TABLE %s DROP COLUMN %s;", tableName, columnName);
-        ConnectToDB(tableName, sql);
+        ConnectToDb(tableName, sql);
     }
 
     public static void renameColumn(String tableName, String columnName, String newColumnName) throws Exception {
         String sql = String.format(
                 "ALTER TABLE %s RENAME COLUMN %s TO %s;", tableName, columnName, newColumnName);
-        ConnectToDB(tableName, sql);
+        ConnectToDb(tableName, sql);
     }
 
-    private static void ConnectToDB(String tableName, String sql) throws Exception {
+    private static void ConnectToDb(String tableName, String sql) throws Exception {
         try (Connection connection = getCon()) {
             try (Statement statement = connection.createStatement()) {
                 statement.execute(sql);
