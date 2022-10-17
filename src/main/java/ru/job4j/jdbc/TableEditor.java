@@ -1,5 +1,9 @@
 package ru.job4j.jdbc;
 
+import ru.job4j.io.Config;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -11,46 +15,55 @@ import static java.sql.DriverManager.getConnection;
 public class TableEditor implements AutoCloseable {
     private Connection connection;
     private Properties properties;
-    public TableEditor(Properties properties) {
+
+    public TableEditor(Properties properties) throws IOException {
         this.properties = properties;
         initConnection();
     }
+
     private void initConnection() {
         connection = null;
     }
 
-    public void createTable(String tableName) throws Exception {
+    public static void createTable(String tableName) throws Exception {
         String sql = String.format(
-                "CREATE TABLE IF NOT EXIST %s;", tableName);
+                "create table if not exists %s (%s);",
+                tableName,
+                "id serial primary key"
+        );
         ConnectToDB(tableName, sql);
     }
 
-    public void dropTable(String tableName) throws Exception {
-        String sql = String.format(
-                "DROP TABLE %s;", tableName);
-        ConnectToDB(tableName, sql);
+    public static void dropTable(String tableName) throws Exception {
+        String sql = String.format("drop table %s;", tableName) ;
+        try (Connection connection = getCon()) {
+            try (Statement statement = connection.createStatement()) {
+                statement.execute(sql);
+                System.out.printf("Table \"%s\" delighted", tableName);
+            }
+        }
     }
 
-    public void addColumn(String tableName, String columnName, String type) throws Exception {
+    public static void addColumn(String tableName, String columnName, String type) throws Exception {
         String sql = String.format(
                 "ALTER table %s ADD %s %s NULL;", tableName, columnName, type);
         ConnectToDB(tableName, sql);
     }
 
-    public void dropColumn(String tableName, String columnName) throws Exception {
+    public static void dropColumn(String tableName, String columnName) throws Exception {
         String sql = String.format(
                 "ALTER TABLE %s DROP COLUMN %s;", tableName, columnName);
         ConnectToDB(tableName, sql);
     }
 
-    public void renameColumn(String tableName, String columnName, String newColumnName) throws Exception {
+    public static void renameColumn(String tableName, String columnName, String newColumnName) throws Exception {
         String sql = String.format(
                 "ALTER TABLE %s RENAME COLUMN %s TO %s;", tableName, columnName, newColumnName);
         ConnectToDB(tableName, sql);
     }
 
-    private void ConnectToDB (String tableName, String sql) throws Exception {
-        try (Connection connection = getConnection()) {
+    private static void ConnectToDB(String tableName, String sql) throws Exception {
+        try (Connection connection = getCon()) {
             try (Statement statement = connection.createStatement()) {
                 statement.execute(sql);
                 System.out.println(getTableScheme(connection, tableName));
@@ -84,15 +97,24 @@ public class TableEditor implements AutoCloseable {
         }
     }
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws Exception {
+        createTable("example_table");
+        dropTable("example_table");
+        addColumn("books", "SN", "int");
+        dropColumn("books", "SN");
+        renameColumn("employees", "name", "fullname");
     }
 
-    private static Connection getConnection() throws Exception {
+    private static Connection getCon() throws Exception {
+       /** try(InputStream in = TableEditor.class.getClassLoader().getResourceAsStream("sql.properties")) {
+            Config config = new Config(in);
+            config.load(in);
+        }*/
         Class.forName("org.postgresql.Driver");
-        String url = "jdbc:postgresql://localhost:5432/idea_db";
+        String url = "jdbc:postgresql://localhost:5432/product_db";
         String login = "postgres";
         String password = "password";
         return DriverManager.getConnection(url, login, password);
     }
+
 }

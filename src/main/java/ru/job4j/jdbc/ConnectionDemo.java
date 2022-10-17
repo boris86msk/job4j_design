@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class ConnectionDemo {
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        Config config = new Config("data/app.properties");
+        Config config = new Config("src/main/resources/sql.properties");
         config.load();
         String url = config.value("url");
         String login = config.value("login");
