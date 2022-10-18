@@ -66,12 +66,10 @@ public class TableEditor implements AutoCloseable {
     }
 
     private void connectToDB(String tableName, String sql, Connection conn) throws Exception {
-        try (Connection connection = conn) {
-            try (Statement statement = connection.createStatement()) {
-                statement.execute(sql);
-                if (!sql.startsWith("drop table")) {
-                    System.out.println(getTableScheme(conn, tableName));
-                }
+        try (Statement statement = connection.createStatement()) {
+            statement.execute(sql);
+            if (!sql.startsWith("drop table")) {
+                System.out.println(getTableScheme(conn, tableName));
             }
         }
     }
