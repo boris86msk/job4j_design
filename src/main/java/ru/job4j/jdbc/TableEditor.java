@@ -69,7 +69,7 @@ public class TableEditor implements AutoCloseable {
         try (Connection connection = conn) {
             try (Statement statement = connection.createStatement()) {
                 statement.execute(sql);
-                if(!sql.startsWith("drop table")){
+                if (!sql.startsWith("drop table")) {
                     System.out.println(getTableScheme(conn, tableName));
                 }
             }
@@ -104,10 +104,10 @@ public class TableEditor implements AutoCloseable {
 
     public static void main(String[] args) throws Exception {
         Properties props = new Properties();
-        try(InputStream in = TableEditor.class.getClassLoader().getResourceAsStream("sql.properties")) {
+        try (InputStream in = TableEditor.class.getClassLoader().getResourceAsStream("sql.properties")) {
             props.load(in);
         }
-        try(TableEditor  tableEditor = new TableEditor(props)){
+        try (TableEditor  tableEditor = new TableEditor(props)) {
             tableEditor.createTable("example_table222", tableEditor.connection);
             tableEditor.dropTable("example_table222", tableEditor.connection);
             tableEditor.addColumn("books", "sn", "int", tableEditor.connection);
