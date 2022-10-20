@@ -22,25 +22,18 @@ public class ImportDB {
     public List<User> load() throws IOException {
         List<User> users = new ArrayList<>();
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
-            users = rd.lines().filter(e -> {
-                        if (!e.contains(";")) {
-                            throw new IllegalArgumentException("the string does not contain \";\"");
-                        }
-                        return true;
-                    })
-                    .map(e -> e.substring(0, e.length() - 1))
+            return rd.lines()
                     .map(e -> e.split(";", 2))
                     .filter(e -> {
-                        if (e[0].isEmpty() || e[1].isEmpty()) {
+                        if (e[0].isBlank() || e[1].isBlank()) {
                             throw new IllegalArgumentException(
-                                    "there is no value before or after the equal sign"
+                                    "there is no value before or after \";\""
                             );
                         }
                         return true;
                     })
                     .map(e -> new User(e[0], e[1]))
                     .collect(Collectors.toList());
-            return users;
         }
 
     }
