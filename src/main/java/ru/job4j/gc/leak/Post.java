@@ -7,15 +7,15 @@ public class Post {
 
     private String text;
 
-    private List<Comment> comments;
+    private Comment[] comments;
 
-    public Post(Integer id, String text, List<Comment> comments) {
+    public Post(Integer id, String text, Comment[] comments) {
         this.id = id;
         this.text = text;
         this.comments = comments;
     }
 
-    public Post(String text, List<Comment> comments) {
+    public Post(String text, Comment[] comments) {
         this.text = text;
         this.comments = comments;
     }
