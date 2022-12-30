@@ -7,12 +7,12 @@ import java.util.Random;
 
 public class CommentGenerator implements Generate {
 
-    public final String PATH_PHRASES = "src/main/java/ru/job4j/gc/leak/files/phrases.txt";
+    public static final String PATH_PHRASES = "src/main/java/ru/job4j/gc/leak/files/phrases.txt";
 
-    public final String SEPARATOR = System.lineSeparator();
-    private List<Comment> comments = new ArrayList<>();
-    public final int COUNT = 50;
-    private List<String> phrases;
+    public static final String SEPARATOR = System.lineSeparator();
+    private static List<Comment> comments = new ArrayList<>();
+    public static final Integer COUNT = 50;
+    private static List<String> phrases;
     private UserGenerator userGenerator;
     private Random random;
 
@@ -30,7 +30,7 @@ public class CommentGenerator implements Generate {
         }
     }
 
-    public List<Comment> getComments() {
+    public static List<Comment> getComments() {
         return comments;
     }
 
