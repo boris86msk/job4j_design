@@ -27,7 +27,6 @@ public class UserGenerator implements Generate {
 
     @Override
     public void generate() {
-        //users.clear();
         for (int i = 0; i < NEW_USERS; i++) {
             users[i] = (new User(
                     surnames.get(random.nextInt(surnames.size())) + SEPARATOR

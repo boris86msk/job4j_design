@@ -36,7 +36,6 @@ public class CommentGenerator implements Generate {
 
     @Override
     public void generate() {
-        //comments.clear();
         for (int i = 0; i < COUNT; i++) {
             String comment = String.format("%s%s%s%s%s",
                     phrases.get(random.nextInt(phrases.size())), SEPARATOR,
