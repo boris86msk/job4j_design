@@ -7,12 +7,12 @@ import java.util.Random;
 
 public class CommentGenerator implements Generate {
 
-    public static final String PATH_PHRASES = "src/main/java/ru/job4j/gc/leak/files/phrases.txt";
+    public static String pathPhrases = "src/main/java/ru/job4j/gc/leak/files/phrases.txt";
 
-    public static final String SEPARATOR = System.lineSeparator();
-    public static final Integer COUNT = 50;
-    private static Comment[] comments = new Comment[COUNT];
-    private static List<String> phrases;
+    public static String separator = System.lineSeparator();
+    public static int count = 50;
+    private List<Comment> comments = new ArrayList<>();
+    private List<String> phrases;
     private UserGenerator userGenerator;
     private Random random;
 
@@ -24,25 +24,25 @@ public class CommentGenerator implements Generate {
 
     private void read() {
         try {
-            phrases = read(PATH_PHRASES);
+            phrases = read(pathPhrases);
         } catch (IOException e) {
             throw new IllegalArgumentException(e);
         }
     }
 
-    public static Comment[] getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
     @Override
     public void generate() {
-        for (int i = 0; i < COUNT; i++) {
+        for (int i = 0; i < count; i++) {
             String comment = String.format("%s%s%s%s%s",
-                    phrases.get(random.nextInt(phrases.size())), SEPARATOR,
-                    phrases.get(random.nextInt(phrases.size())), SEPARATOR,
+                    phrases.get(random.nextInt(phrases.size())), separator,
+                    phrases.get(random.nextInt(phrases.size())), separator,
                     phrases.get(random.nextInt(phrases.size())));
-            comments[i] = new Comment(comment,
-                    userGenerator.randomUser());
+            comments.add(new Comment(comment,
+                    userGenerator.randomUser()));
         }
     }
 }

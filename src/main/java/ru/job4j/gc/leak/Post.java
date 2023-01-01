@@ -3,19 +3,19 @@ package ru.job4j.gc.leak;
 import java.util.List;
 
 public class Post {
-    private Integer id;
+    private int id;
 
     private String text;
 
-    private Comment[] comments;
+    private List<Comment> comments;
 
-    public Post(Integer id, String text, Comment[] comments) {
+    public Post(int id, String text, List<Comment> comments) {
         this.id = id;
         this.text = text;
         this.comments = comments;
     }
 
-    public Post(String text, Comment[] comments) {
+    public Post(String text, List<Comment> comments) {
         this.text = text;
         this.comments = comments;
     }

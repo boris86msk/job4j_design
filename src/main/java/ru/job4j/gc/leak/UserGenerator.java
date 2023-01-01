@@ -7,17 +7,17 @@ import java.util.Random;
 
 public class UserGenerator implements Generate {
 
-    public static final String PATH_NAMES = "src/main/java/ru/job4j/gc/leak/files/names.txt";
-    public static final String PATH_SURNAMES = "src/main/java/ru/job4j/gc/leak/files/surnames.txt";
-    public static final String PATH_PATRONS = "src/main/java/ru/job4j/gc/leak/files/patr.txt";
+    public static String pathNames = "src/main/java/ru/job4j/gc/leak/files/names.txt";
+    public static String pathSurnames = "src/main/java/ru/job4j/gc/leak/files/surnames.txt";
+    public static String pathPatrons = "src/main/java/ru/job4j/gc/leak/files/patr.txt";
 
-    public static final String SEPARATOR = " ";
-    public static final Integer NEW_USERS = 1000;
+    public static String separator = " ";
+    public static int newUsers = 1000;
 
-    public static List<String> names;
-    public static List<String> surnames;
-    public static List<String> patrons;
-    private static User[] users = new User[NEW_USERS];
+    public  List<String> names;
+    public List<String> surnames;
+    public  List<String> patrons;
+    private List<User> users = new ArrayList<>();
     private Random random;
 
     public UserGenerator(Random random) {
@@ -27,29 +27,33 @@ public class UserGenerator implements Generate {
 
     @Override
     public void generate() {
-        for (int i = 0; i < NEW_USERS; i++) {
-            users[i] = (new User(
-                    surnames.get(random.nextInt(surnames.size())) + SEPARATOR
-                            + names.get(random.nextInt(names.size())) + SEPARATOR
-                            + patrons.get(random.nextInt(patrons.size()))));
+        users.clear();
+        for (int i = 0; i < newUsers; i++) {
+            String name = String.format("%s%s%s%s%s",
+                    surnames.get(random.nextInt(surnames.size())),
+                    separator,
+                    names.get(random.nextInt(names.size())),
+                    separator,
+                    patrons.get(random.nextInt(patrons.size())));
+            users.add(new User(name));
         }
     }
 
     private void readAll() {
         try {
-            names = read(PATH_NAMES);
-            surnames = read(PATH_SURNAMES);
-            patrons = read(PATH_PATRONS);
+            names = read(pathNames);
+            surnames = read(pathSurnames);
+            patrons = read(pathPatrons);
         } catch (IOException e) {
             throw new IllegalArgumentException(e);
         }
     }
 
     public User randomUser() {
-        return users[random.nextInt(users.length)];
+        return users.get(random.nextInt(users.size()));
     }
 
-    public static User[] getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 }
