@@ -28,9 +28,4 @@ public class Post {
         this.id = id;
     }
 
-
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-    }
 }

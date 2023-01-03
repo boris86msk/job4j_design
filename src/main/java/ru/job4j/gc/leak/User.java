@@ -15,8 +15,4 @@ public class User {
         this.name = name;
     }
 
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-    }
 }
