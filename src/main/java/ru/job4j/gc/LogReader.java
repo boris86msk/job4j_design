@@ -5,7 +5,7 @@ import java.io.FileReader;
 public class LogReader {
     public static void main(String[] args) {
 
-        try (FileReader rid = new FileReader("logSort.txt..4")) {
+        try (FileReader rid = new FileReader("logSort.txt")) {
             StringBuilder text = new StringBuilder();
             int rd;
             while ((rd = rid.read()) != -1) {
@@ -31,9 +31,3 @@ public class LogReader {
         }
     }
 }
-        // 420: 4 64 ru.job4j.gc.leak.Generate$$Lambda$17/0x0000000800c039f0
-        // 582: 1 24 ru.job4j.gc.leak.CommentGenerator
-        // 714: 1 16 ru.job4j.gc.leak.PostStore
-        // 715: 1 16 ru.job4j.gc.leak.UserGenerator
-        // -------------------------------------------------
-        // 1: 14949 1451040 [B (java.base@18.0.1)
