@@ -45,19 +45,19 @@ public class Emulator {
                 System.out.println("Текущая директория " + dir);
                 System.out.println("Введите имя файла с расширением .txt");
                 String fileName = scan.nextLine();
-                if (Files.exists(Paths.get(String.format("%s\\%s", dir, fileName)))) {
+                if (!Files.exists(Paths.get(String.format("%s\\%s", dir, fileName)))) {
                     throw new IllegalArgumentException(String.format("file %s not found", fileName));
                 } else {
                     String file = Files.readString(Paths.get(String.format("%s\\%s", dir, fileName)));
-                    emulator.dirMap.get(dir).put(String.format("%s\\%s", dir, fileName), file);
+                    emulator.dirMap.get(dir).put(String.format(fileName), file);
                 }
             } else if (DOWNLOAD == userChoice) {
                 System.out.println("Введите имя файла из текущей директории:");
                 System.out.println(dir);
                 String fileName = scan.nextLine();
-//                if (Files.exists(Paths.get(String.format("%s\\%s", dir, fileName)))) {
-//                    throw new IllegalArgumentException(String.format("file %s not found", fileName));
-//                }
+                if (!Files.exists(Paths.get(String.format("%s/%s", dir, fileName)))) {
+                    throw new IllegalArgumentException(String.format("file %s not found", fileName));
+                }
                 String text = emulator.dirMap.get(dir).load(fileName);
                 emulator.printFile(text, fileName);
             }  else {
