@@ -14,7 +14,7 @@ public class DirFileCache extends AbstractCache<String, String> {
     @Override
     protected String load(String key) throws IOException {
         String rsl = "";
-        if (!cache.containsKey(key)) {
+        if (!cache.containsKey(key) || cache.get(key) == null) {
             String text = Files.readString(Paths.get(String.format("%s\\%s", cachingDir, key)));
             put(key, text);
             System.out.println("<<<Загружалось в кэш>>>");
