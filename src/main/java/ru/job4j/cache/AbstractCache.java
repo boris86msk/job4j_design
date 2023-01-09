@@ -13,8 +13,8 @@ public abstract class AbstractCache<K, V> {
     }
 
     public V get(K key) throws IOException {
-        return (!cache.containsKey(key) || cache.get(key) == null) ? load(key) :
-         cache.get(key).get();
+        return (!cache.containsKey(key) || cache.get(key) == null) ? load(key)
+                : cache.get(key).get();
     }
 
     protected abstract V load(K key) throws IOException;
