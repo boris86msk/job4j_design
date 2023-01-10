@@ -2,6 +2,7 @@ package ru.job4j.cache;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class DirFileCache extends AbstractCache<String, String> {
@@ -13,17 +14,7 @@ public class DirFileCache extends AbstractCache<String, String> {
 
     @Override
     protected String load(String key) throws IOException {
-        String rsl = "";
-        if (!cache.containsKey(key) || cache.get(key) == null) {
-            String text = Files.readString(Paths.get(String.format("%s\\%s", cachingDir, key)));
-            put(key, text);
-            System.out.println("<<<Загружалось в кэш>>>");
-            rsl = get(key);
-        } else {
-            System.out.println("<<<Выгружено из кэш>>>");
-            rsl = get(key);
-        }
-        return rsl;
+        return Files.readString(Path.of(cachingDir, key));
     }
 
     public void getListFiles() throws IOException {
