@@ -1,4 +1,6 @@
-package ru.job4j.cache;
+package ru.job4j.cache.menu;
+
+import ru.job4j.cache.DirFileCache;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -58,7 +60,7 @@ public class Emulator {
                 if (!Files.exists(Paths.get(String.format("%s/%s", dir, fileName)))) {
                     throw new IllegalArgumentException(String.format("file %s not found", fileName));
                 }
-                String text = emulator.dirMap.get(dir).load(fileName);
+                String text = emulator.dirMap.get(dir).get(fileName);
                 emulator.printFile(text, fileName);
             }  else {
                 run = false;

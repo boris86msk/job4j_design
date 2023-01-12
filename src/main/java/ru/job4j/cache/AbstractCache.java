@@ -14,13 +14,17 @@ public abstract class AbstractCache<K, V> {
         cache.put(key, new SoftReference<>(value));
     }
 
-    public V get(K key) throws IOException {
-        V rsl = null;
-        if (!cache.containsKey(key) || cache.get(key) == null) {
-            rsl = load(key);
-            put(key, rsl);
-        }
-        return rsl;
+    public V get(K key) {
+            V obj = cache.getOrDefault(key, new SoftReference<>(null)).get();
+            try {
+                if (obj == null) {
+                    obj = load(key);
+                    put(key, obj);
+                }
+            } catch (IOException e) {
+                e.fillInStackTrace();
+            }
+        return obj;
     }
 
     protected abstract V load(K key) throws IOException;
