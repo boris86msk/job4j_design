@@ -1,6 +1,7 @@
 package ru.job4j.cache.menu;
 
 import ru.job4j.cache.DirFileCache;
+import ru.job4j.cache.PrintFiles;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,9 +11,9 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Emulator {
-    public static final Integer CACHING_DIR = 1;
-    public static final Integer LOAD = 2;
-    public static final Integer DOWNLOAD = 3;
+    public static final int CACHING_DIR = 1;
+    public static final int LOAD = 2;
+    public static final int DOWNLOAD = 3;
     public static String dir;
     public Map<String, DirFileCache> dirMap = new HashMap<>();
 
@@ -42,7 +43,7 @@ public class Emulator {
                     DirFileCache dfc = new DirFileCache(path);
                     emulator.dirMap.put(path, dfc);
                 }
-                emulator.dirMap.get(path).getListFiles();
+                emulator.getListFiles();
             } else if (LOAD == userChoice) {
                 System.out.println("Текущая директория " + dir);
                 System.out.println("Введите имя файла с расширением .txt");
@@ -69,9 +70,18 @@ public class Emulator {
         }
     }
 
+    public void getListFiles() {
+        System.out.println("Найденые файлы:");
+        try {
+            Files.walkFileTree(Paths.get(dir), new PrintFiles());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void printFile(String text, String fileName) {
         System.out.println("------------------- " + fileName + " ---------------------");
         System.out.println(text);
         System.out.println("-----------------------------------------------------");
     }
+
 }

@@ -18,17 +18,8 @@ public class DirFileCache extends AbstractCache<String, String> {
         try {
             rsl = Files.readString(Path.of(cachingDir, key));
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new IllegalArgumentException();
         }
         return rsl;
-    }
-
-    public void getListFiles() {
-        System.out.println("Найденые файлы:");
-        try {
-            Files.walkFileTree(Paths.get(cachingDir), new PrintFiles());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
