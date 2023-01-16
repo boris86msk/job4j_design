@@ -75,13 +75,13 @@ class BoxTest {
     void cubeAreaIsFiftyFour() {
         Box box = new Box(8, 3);
         double area = box.getArea();
-        assertThat(area).isCloseTo(54D, withPrecision(0.01));
+        assertThat(area).isCloseTo(54D, withPrecision(0.01D));
     }
 
     @Test
     void cubAreaIsFiftyFour() {
         Box box = new Box(4, 3);
         double area = box.getArea();
-        assertThat(area).isCloseTo(15.58D, withPrecision(0.01));
+        assertThat(area).isCloseTo(15.58D, withPrecision(0.01D));
     }
 }
