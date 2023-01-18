@@ -10,11 +10,11 @@ import static org.assertj.core.api.Assertions.*;
 
 class MaxMinTest {
     MaxMin maxMin = new MaxMin();
-    List<Cat> cats = new ArrayList<>();
     CatCompar catCompar = new CatCompar();
 
     @Test
     void wenMaxNine() {
+        List<Cat> cats = new ArrayList<>();
         cats.add(new Cat(0));
         cats.add(new Cat(9));
         cats.add(new Cat(5));
@@ -26,11 +26,12 @@ class MaxMinTest {
 
     @Test
     void wenMinMinusOne() {
-        cats.add(new Cat(10));
-        cats.add(new Cat(-1));
-        cats.add(new Cat(4));
+        List<Cat> cats = new ArrayList<>();
         cats.add(new Cat(0));
-        cats.add(new Cat(7));
+        cats.add(new Cat(9));
+        cats.add(new Cat(5));
+        cats.add(new Cat(3));
+        cats.add(new Cat(-1));
         int min = maxMin.min(cats, catCompar).id;
         assertThat(min).isEqualTo(-1);
     }

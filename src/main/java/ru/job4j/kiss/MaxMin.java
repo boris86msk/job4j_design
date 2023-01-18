@@ -16,6 +16,9 @@ public class MaxMin {
     }
 
     private <T> T search(List<T> value, Comparator<T> comparator, Predicate pred) {
+        if (value == null || value.isEmpty()) {
+            return null;
+        }
         T res = value.get(0);
         for (int i = 1; i < value.size(); i++) {
             int numb = comparator.compare(res, value.get(i));
