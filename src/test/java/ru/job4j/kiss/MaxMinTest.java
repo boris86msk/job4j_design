@@ -4,6 +4,7 @@ import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -36,4 +37,10 @@ class MaxMinTest {
         assertThat(min).isEqualTo(-1);
     }
 
+    @Test
+    void whenListEmptyThenGetNull() {
+        List<Cat> list = Collections.emptyList();
+        Cat result = maxMin.min(list, catCompar);
+        assertThat(result).isNull();
+    }
 }
