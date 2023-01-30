@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -54,6 +55,18 @@ class Cinema3DTest {
         Calendar date = Calendar.getInstance();
         Ticket ticket = cinema.buy(account, 1, 1, date);
         assertThatThrownBy(() -> cinema.buy(account, 1, 1, date)).
+                isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    public void whenBuyOnThePastDate() {
+        Account account = new AccountCinema();
+        Cinema cinema = new Cinema3D();
+        Calendar date1 = new GregorianCalendar(2023, Calendar.JANUARY,
+                5, 18, 30);
+        Calendar date2 = Calendar.getInstance();
+        assertThat(date1.before(date2)).isTrue();
+        assertThatThrownBy(() -> cinema.buy(account, 1, 1, date1)).
                 isInstanceOf(IllegalArgumentException.class);
     }
 
