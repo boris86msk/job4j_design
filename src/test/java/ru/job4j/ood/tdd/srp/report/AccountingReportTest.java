@@ -22,7 +22,7 @@ class AccountingReportTest {
         Employee worker = new Employee("Boris", now, now, 150, Currency.RUB);
         DateTimeParser<Calendar> parser = new ReportDateTimeParser();
         store.add(worker);
-        Report engine = new AccountingReport(store, parser, Currency.EUR);
+        Report engine = new AccountingReport(store, parser, convert, Currency.EUR);
         StringBuilder expect = new StringBuilder()
                 .append("Name; Hired; Fired; Salary in EUR;")
                 .append(System.lineSeparator())

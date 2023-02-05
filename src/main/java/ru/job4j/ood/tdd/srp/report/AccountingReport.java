@@ -12,18 +12,19 @@ import java.util.function.Predicate;
 public class AccountingReport implements Report {
     private final Store store;
     private final DateTimeParser<Calendar> dateTimeParser;
-
+    private final InMemoryCurrencyConverter convert;
     private final Currency convertCurr;
 
-    public AccountingReport(Store store, DateTimeParser<Calendar> dateTimeParser, Currency convertCurr) {
+    public AccountingReport(Store store, DateTimeParser<Calendar> dateTimeParser,
+                            InMemoryCurrencyConverter convert , Currency convertCurr) {
         this.store = store;
         this.dateTimeParser = dateTimeParser;
+        this.convert = convert;
         this.convertCurr = convertCurr;
     }
 
     @Override
     public String generate(Predicate<Employee> filter) {
-        InMemoryCurrencyConverter convert = new InMemoryCurrencyConverter();
         StringBuilder text = new StringBuilder();
         text.append(String.format("Name; Hired; Fired; Salary in %s;", convertCurr))
                 .append(System.lineSeparator());
