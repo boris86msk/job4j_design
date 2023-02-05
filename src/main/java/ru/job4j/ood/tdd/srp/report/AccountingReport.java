@@ -16,7 +16,7 @@ public class AccountingReport implements Report {
     private final Currency convertCurr;
 
     public AccountingReport(Store store, DateTimeParser<Calendar> dateTimeParser,
-                            InMemoryCurrencyConverter convert , Currency convertCurr) {
+                            InMemoryCurrencyConverter convert, Currency convertCurr) {
         this.store = store;
         this.dateTimeParser = dateTimeParser;
         this.convert = convert;
