@@ -1,6 +1,7 @@
 package ru.job4j.ood.tdd.srp.report;
 
 import ru.job4j.ood.tdd.srp.currency.Currency;
+import ru.job4j.ood.tdd.srp.currency.CurrencyConverter;
 import ru.job4j.ood.tdd.srp.currency.InMemoryCurrencyConverter;
 import ru.job4j.ood.tdd.srp.formatter.DateTimeParser;
 import ru.job4j.ood.tdd.srp.model.Employee;
@@ -12,11 +13,11 @@ import java.util.function.Predicate;
 public class AccountingReport implements Report {
     private final Store store;
     private final DateTimeParser<Calendar> dateTimeParser;
-    private final InMemoryCurrencyConverter convert;
+    private final CurrencyConverter convert;
     private final Currency convertCurr;
 
     public AccountingReport(Store store, DateTimeParser<Calendar> dateTimeParser,
-                            InMemoryCurrencyConverter convert, Currency convertCurr) {
+                            CurrencyConverter convert, Currency convertCurr) {
         this.store = store;
         this.dateTimeParser = dateTimeParser;
         this.convert = convert;

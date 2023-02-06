@@ -2,6 +2,7 @@ package ru.job4j.ood.tdd.srp.report;
 
 import org.junit.jupiter.api.Test;
 import ru.job4j.ood.tdd.srp.currency.Currency;
+import ru.job4j.ood.tdd.srp.currency.CurrencyConverter;
 import ru.job4j.ood.tdd.srp.currency.InMemoryCurrencyConverter;
 import ru.job4j.ood.tdd.srp.formatter.DateTimeParser;
 import ru.job4j.ood.tdd.srp.formatter.ReportDateTimeParser;
@@ -18,7 +19,7 @@ class AccountingReportTest {
     public void wenAccountingGenerated() {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
-        InMemoryCurrencyConverter convert = new InMemoryCurrencyConverter();
+        CurrencyConverter convert = new InMemoryCurrencyConverter();
         Employee worker = new Employee("Boris", now, now, 150, Currency.RUB);
         DateTimeParser<Calendar> parser = new ReportDateTimeParser();
         store.add(worker);
