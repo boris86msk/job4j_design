@@ -10,7 +10,7 @@ import java.util.List;
 public class Employees {
     public List<Employee> employee;
 
-    public Employees(){}
+    public Employees() { }
 
     public Employees(List<Employee> employeeList) {
         this.employee = employeeList;
