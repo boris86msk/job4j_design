@@ -9,13 +9,14 @@ import ru.job4j.ood.tdd.srp.report.HRReport;
 import ru.job4j.ood.tdd.srp.report.Report;
 import ru.job4j.ood.tdd.srp.store.MemStore;
 
+import javax.xml.bind.JAXBException;
 import java.util.Calendar;
 
 import static org.assertj.core.api.Assertions.*;
 
 class HRReportTest {
     @Test
-    public void wenAccountingGenerated() {
+    public void wenAccountingGenerated() throws JAXBException {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         DateTimeParser<Calendar> parser = new ReportDateTimeParser();

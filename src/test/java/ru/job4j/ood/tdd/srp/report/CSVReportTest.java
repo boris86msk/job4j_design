@@ -7,6 +7,7 @@ import ru.job4j.ood.tdd.srp.formatter.ReportDateTimeParser;
 import ru.job4j.ood.tdd.srp.model.Employee;
 import ru.job4j.ood.tdd.srp.store.MemStore;
 
+import javax.xml.bind.JAXBException;
 import java.util.Calendar;
 
 import static org.assertj.core.api.Assertions.*;
@@ -14,7 +15,7 @@ import static org.assertj.core.api.Assertions.*;
 class CSVReportTest {
 
     @Test
-    public void whenNeedCSVReportFormat() {
+    public void whenNeedCSVReportFormat() throws JAXBException {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Dmitry", now, now, 90, Currency.RUB);
